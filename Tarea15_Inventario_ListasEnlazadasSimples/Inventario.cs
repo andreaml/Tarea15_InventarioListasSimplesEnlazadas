@@ -17,13 +17,29 @@ namespace Tarea15_Inventario_ListasEnlazadasSimples
             _ultimo = null;
         }
 
+        //public void agregarProducto(Producto productoNuevo)
+        //{
+        //    if (_primero == null)
+        //        _primero = productoNuevo;
+        //    else
+        //        _ultimo.siguiente = productoNuevo;
+        //    _ultimo = productoNuevo;
+        //}
+
         public void agregarProducto(Producto productoNuevo)
         {
             if (_primero == null)
                 _primero = productoNuevo;
             else
-                _ultimo.siguiente = productoNuevo;
-            _ultimo = productoNuevo;
+                agregarProducto(_primero, productoNuevo);
+        }
+
+        private void agregarProducto(Producto ultimo, Producto nuevo)
+        {
+            if (ultimo.siguiente == null)
+                ultimo.siguiente = nuevo;
+            else
+                agregarProducto(ultimo.siguiente, nuevo);
         }
 
         public void agregarProductoEnInicio(Producto productoNuevo)
